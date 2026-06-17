@@ -150,23 +150,6 @@ input, select, textarea { font-size: max(16px, 1rem); }
 .icp-option-range { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--color-gold); letter-spacing: -.5px; margin-bottom: var(--space-1); line-height: 1.1; }
 .icp-option-label { font-size: 12px; font-weight: 600; color: var(--neutral-200); line-height: 1.3; }
 
-/* Personas */
-.persona-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
-@media (min-width: 768px) { .persona-grid { grid-template-columns: repeat(3, 1fr); } }
-.persona-card { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--space-6); display: flex; flex-direction: column; transition: all var(--duration-normal) var(--ease); position: relative; overflow: hidden; }
-.persona-card:hover { border-color: var(--color-accent); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.persona-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--color-conversion); transform-origin: left; transform: scaleX(0); transition: transform var(--duration-slow) var(--ease); }
-.persona-card:hover::before { transform: scaleX(1); }
-.persona-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 2px; color: var(--color-conversion); text-transform: uppercase; margin-bottom: var(--space-3); }
-.persona-name { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--color-primary); letter-spacing: -.4px; line-height: 1.15; margin-bottom: var(--space-1); }
-.persona-role { font-size: 13.5px; color: var(--neutral-500); font-weight: 500; margin-bottom: var(--space-5); font-style: italic; }
-.persona-quote { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 16.5px; color: var(--neutral-700); line-height: 1.4; padding: var(--space-4); background: var(--neutral-50); border-left: 3px solid var(--color-gold); border-radius: var(--radius-sm); margin-bottom: var(--space-5); }
-.persona-list { list-style: none; flex: 1; margin-bottom: var(--space-5); }
-.persona-list li { display: flex; align-items: flex-start; gap: var(--space-2); padding: var(--space-2) 0; font-size: 13.5px; color: var(--neutral-600); line-height: 1.5; }
-.persona-list li svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--color-success); margin-top: 3px; }
-.persona-cta { margin-top: auto; background: var(--color-primary); color: white; padding: 11px 16px; border-radius: var(--radius-md); font-size: 14px; font-weight: 700; text-align: center; transition: background var(--duration-fast) var(--ease); cursor: pointer; border: none; width: 100%; }
-.persona-cta:hover { background: var(--color-primary-light); }
-
 /* Cobertura por uso */
 .uso-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
 @media (min-width: 640px) { .uso-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -193,6 +176,16 @@ input, select, textarea { font-size: max(16px, 1rem); }
 .brand-tile-desc { font-size: 12px; color: var(--neutral-400); line-height: 1.4; }
 .brand-tile-stat { margin-top: var(--space-2); padding-top: var(--space-2); border-top: 1px dashed rgba(255,255,255,.1); font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: .3px; color: var(--color-gold); line-height: 1.3; }
 .brand-tile-stat strong { color: var(--neutral-50); font-weight: 800; }
+
+/* Brand logos grid — concesionarios autorizados del Grupo */
+.brands-grid-logos { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin: var(--space-8) 0 var(--space-6) 0; }
+@media (min-width: 640px) { .brands-grid-logos { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 960px) { .brands-grid-logos { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1200px) { .brands-grid-logos { grid-template-columns: repeat(6, 1fr); } }
+.brand-logo-tile { background: rgba(255,255,255,.96); border: 1px solid rgba(255,255,255,.18); border-radius: var(--radius-md); padding: var(--space-5) var(--space-4); display: flex; align-items: center; justify-content: center; min-height: 96px; transition: all var(--duration-normal) var(--ease); }
+.brand-logo-tile:hover { background: white; transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,.15); }
+.brand-logo-tile img { max-width: 100%; max-height: 52px; width: auto; height: auto; object-fit: contain; filter: grayscale(0); }
+@media (max-width: 480px) { .brand-logo-tile { min-height: 80px; padding: var(--space-4) var(--space-3); } .brand-logo-tile img { max-height: 40px; } }
 .brands-foot { margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; color: var(--neutral-400); line-height: 1.55; text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
 .brands-foot strong { color: var(--neutral-50); font-weight: 600; }
 
@@ -377,7 +370,7 @@ input, select, textarea { font-size: max(16px, 1rem); }
         Cuéntanos de tu flota
         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </button>
-      <a href="#personas" class="btn btn-secondary">¿Eres como Diana, Mario o Lucía?</a>
+      <a href="#marcas" class="btn btn-secondary">Ver marcas que trabajamos</a>
     </div>
   </div>
 </section>
@@ -431,62 +424,7 @@ input, select, textarea { font-size: max(16px, 1rem); }
   </div>
 </section>
 
-<!-- PERSONAS — el cliente se reconoce -->
-<section class="section" id="personas" aria-labelledby="personas-title">
-  <div class="section-inner">
-    <span class="section-eyebrow">Diseñado para tu rol</span>
-    <h2 id="personas-title">¿Quién toma la decisión en tu empresa?</h2>
-    <p class="section-intro">
-      Trabajamos con tres tipos de comprador B2B. No tratamos a una arrendadora regional como a una PYME industrial, ni a un dueño de constructora como persona física. Encuéntrate aquí — el flujo se adapta.
-    </p>
 
-    <div class="persona-grid">
-
-      <article class="persona-card">
-        <div class="persona-eyebrow">10–30 UNIDADES</div>
-        <div class="persona-name">Diana</div>
-        <div class="persona-role">Gerente de Operaciones / Compras de PYME industrial, distribución o manufactura</div>
-        <div class="persona-quote">"Necesito renovar la flota sin pelearme tres semanas con cinco dealers diferentes."</div>
-        <ul class="persona-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Comité de compra con CFO + Operaciones</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Ciclo de renovación 3–5 años</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pickups + vans + algunas SUVs ejecutivas</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> TCO a 3 años, no precio puntual</li>
-        </ul>
-        <button type="button" class="persona-cta" onclick="openLeadForm('persona_diana', {num_unidades_rango: '10-30'})">Soy como Diana →</button>
-      </article>
-
-      <article class="persona-card">
-        <div class="persona-eyebrow">3–9 UNIDADES</div>
-        <div class="persona-name">Mario</div>
-        <div class="persona-role">Dueño o Director de PYME pequeña: constructora, despacho, agencia, consultora</div>
-        <div class="persona-quote">"Quiero que me traten como empresa aunque solo compre 4 autos, no como persona física."</div>
-        <ul class="persona-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Él decide directo (o con la esposa)</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Mix trabajo + ejecutivo + personal</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Crédito empresarial flexible, sin lease forzado</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Atención inmediata, no esperar comité</li>
-        </ul>
-        <button type="button" class="persona-cta" onclick="openLeadForm('persona_mario', {num_unidades_rango: '3-9'})">Soy como Mario →</button>
-      </article>
-
-      <article class="persona-card">
-        <div class="persona-eyebrow">10–30 PUNTUAL</div>
-        <div class="persona-name">Lucía</div>
-        <div class="persona-role">Gerente de Compras de arrendadora regional, SOFOM o fintech automotriz</div>
-        <div class="persona-quote">"Necesito 8 unidades específicas en menos de 30 días — sin pasar por mi proveedor anual."</div>
-        <ul class="persona-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pedido puntual fuera del rolling anual</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Necesita disponibilidad y tiempo de entrega</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Modelo + versión específicos sin negociar</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Factura corporativa por razón social</li>
-        </ul>
-        <button type="button" class="persona-cta" onclick="openLeadForm('persona_lucia', {num_unidades_rango: '10-30'})">Soy como Lucía →</button>
-      </article>
-
-    </div>
-  </div>
-</section>
 
 <!-- COBERTURA POR USO — no modelos individuales, categorías -->
 <section class="section section-alt" aria-labelledby="uso-title">
@@ -530,114 +468,66 @@ input, select, textarea { font-size: max(16px, 1rem); }
   </div>
 </section>
 
-<!-- MARCAS QUE REPRESENTAMOS — sin specs, solo identificación -->
-<section class="brands-strip" aria-labelledby="brands-title">
+<!-- MARCAS QUE REPRESENTAMOS · Concesionarios autorizados del Grupo -->
+<section class="brands-strip" id="marcas" aria-labelledby="brands-title">
   <div class="section-inner">
     <span class="section-eyebrow">Lineup</span>
-    <h2 id="brands-title">Las marcas que ya están moviendo flotillas con nosotros.</h2>
-    <p class="section-intro">No te decimos "elige un modelo" desde el catálogo. Te decimos qué marcas trabajamos hoy bien para flotilla, según uso. En la cotización armonizamos marcas según disponibilidad inmediata, presupuesto y plazo de entrega comprometible.</p>
+    <h2 id="brands-title">10 marcas, una sola conversación.</h2>
+    <p class="section-intro">Concesionarios autorizados del Grupo Plasencia. Mezcla las que necesites para tu flota — pickups Ford o RAM para campo, vans Peugeot o Promaster para reparto, SUVs Mazda o Hyundai para ventas, GAC o Changan para flotas emergentes. Un solo ejecutivo arma el portafolio.</p>
 
-    <div class="brands-grid">
-      <div class="brand-tile">
-        <div class="brand-tile-name">Ford</div>
-        <div class="brand-tile-desc">Pickups y vans</div>
-        <div class="brand-tile-stat">200 uds YTD 2026 · <strong>#1 volumen flotilla</strong></div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">Mazda</div>
-        <div class="brand-tile-desc">SUVs y pickups</div>
-        <div class="brand-tile-stat">180 uds YTD 2026 · <strong>+71% YoY</strong></div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">RAM</div>
-        <div class="brand-tile-desc">Pickups full-size + vans cargo</div>
-        <div class="brand-tile-stat">Stellantis LCV · <strong>líder sucursal absoluto</strong></div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">Jeep</div>
-        <div class="brand-tile-desc">SUVs lifestyle · ejecutivo</div>
-        <div class="brand-tile-stat">Mix ejecutivo</div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">Peugeot</div>
-        <div class="brand-tile-desc">Vans urbanas · reparto compacto</div>
-        <div class="brand-tile-stat">Mix flotilla logística</div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">Dodge / Fiat</div>
-        <div class="brand-tile-desc">SUVs y compactos urbanos</div>
-        <div class="brand-tile-stat">Mix flotilla urbana</div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">Hyundai</div>
-        <div class="brand-tile-desc">Sedanes y SUVs · ventas y ejecutivo</div>
-        <div class="brand-tile-stat">121 uds YTD 2026</div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">GAC</div>
-        <div class="brand-tile-desc">SUVs · alianza fabril Toyota/Honda</div>
-        <div class="brand-tile-stat">79 uds YTD · <strong>+79% YoY</strong></div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">Changan</div>
-        <div class="brand-tile-desc">SUVs emergentes · tasa competitiva</div>
-        <div class="brand-tile-stat"><strong>+178% YoY</strong> · emergente</div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">GWM</div>
-        <div class="brand-tile-desc">Pickups y SUVs · turbo diesel</div>
-        <div class="brand-tile-stat"><strong>+260% YoY</strong> · emergente</div>
-      </div>
-      <div class="brand-tile">
-        <div class="brand-tile-name">Seminuevos</div>
-        <div class="brand-tile-desc">Catálogo multimarca certificado</div>
-        <div class="brand-tile-stat">Sale-leaseback · trade-in</div>
-      </div>
+    <div class="brands-grid-logos">
+      <div class="brand-logo-tile" data-marca="ford"><img src="imagenes/logos/marcas/ford.svg" alt="Ford" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="mazda"><img src="imagenes/logos/marcas/mazda.svg" alt="Mazda" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="ram"><img src="imagenes/logos/marcas/ram.svg" alt="RAM" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="jeep"><img src="imagenes/logos/marcas/jeep.svg" alt="Jeep" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="peugeot"><img src="imagenes/logos/marcas/peugeot.svg" alt="Peugeot" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="dodge"><img src="imagenes/logos/marcas/dodge.svg" alt="Dodge" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="fiat"><img src="imagenes/logos/marcas/fiat.svg" alt="Fiat" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="hyundai"><img src="imagenes/logos/marcas/hyundai.svg" alt="Hyundai" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="gac"><img src="imagenes/logos/marcas/gac.png" alt="GAC" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="changan"><img src="imagenes/logos/marcas/changan.svg" alt="Changan" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="gwm"><img src="imagenes/logos/marcas/gwm.svg" alt="GWM" loading="lazy"></div>
     </div>
 
     <p class="brands-foot">
-      <strong>Las cifras son del análisis interno de ventas a flotillas del Grupo, periodo enero–mayo 2026.</strong> No publicamos modelos individuales con precio aquí porque el precio empresarial depende de tu volumen, modalidad de financiamiento y disponibilidad del mes. La cotización que recibes está hecha a tu medida con stock real y condiciones vigentes para tu ICP.
+      El precio empresarial depende de volumen, modalidad de financiamiento y disponibilidad del mes. Tu cotización refleja stock real y condiciones del periodo en curso, no parrilla genérica.
     </p>
   </div>
 </section>
 
-<!-- SOCIAL PROOF — el motor B2B en números (datos públicos del Reporte Flotillas) -->
+<!-- TRACK RECORD CUANTITATIVO — datos del Grupo en lenguaje del cliente -->
 <section class="section section-alt" aria-labelledby="numbers-title">
   <div class="section-inner">
-    <span class="section-eyebrow">Magnitud del piloto</span>
-    <h2 id="numbers-title">El motor de Flotillas del Grupo, en cifras públicas.</h2>
-    <p class="section-intro">No son promesas. Son las ventas reales documentadas en el reporte interno de la División Flotillas, enero–mayo 2026. Verificable contra los Excels operativos compartidos a la Dirección de Marketing Corporativo.</p>
+    <span class="section-eyebrow">El programa en operación</span>
+    <h2 id="numbers-title">Flotillas no es un proyecto nuevo del Grupo.</h2>
+    <p class="section-intro">Es una operación con números concretos en curso. Estas son las cifras del año que recibes en tu propuesta — sin promesas ni rangos hinchados.</p>
 
     <div class="numbers-grid">
       <div class="numbers-card">
-        <div class="numbers-card-eyebrow">Volumen ene–may 2026</div>
+        <div class="numbers-card-eyebrow">Unidades 2026 · ene–may</div>
         <div class="numbers-card-value">749 <span>uds</span></div>
-        <div class="numbers-card-delta up">+435% vs 2025</div>
-        <div class="numbers-card-foot">Sostenido 5 meses consecutivos. Marzo peak (250 uds).</div>
+        <div class="numbers-card-delta up">+435% vs mismo periodo 2025</div>
+        <div class="numbers-card-foot">5 meses consecutivos en alza. Marzo cerró 250 unidades.</div>
       </div>
       <div class="numbers-card">
-        <div class="numbers-card-eyebrow">Factura corporativa YTD</div>
+        <div class="numbers-card-eyebrow">Facturación corporativa</div>
         <div class="numbers-card-value">$441.7 <span>MDP</span></div>
         <div class="numbers-card-delta up">+457% vs 2025</div>
-        <div class="numbers-card-foot">Margen operativo 5.26%, +1.17 pts vs 4.09% de 2025.</div>
+        <div class="numbers-card-foot">Operación financiera estable, no proyecto puntual.</div>
       </div>
       <div class="numbers-card">
-        <div class="numbers-card-eyebrow">Mix segmento AA Empresas</div>
-        <div class="numbers-card-value">21.5<span>%</span></div>
-        <div class="numbers-card-delta up">+5.5 pts vs 2025</div>
-        <div class="numbers-card-foot">El segmento donde digital crece más rápido. Tu segmento.</div>
+        <div class="numbers-card-eyebrow">Tiempo de respuesta</div>
+        <div class="numbers-card-value">&lt;24<span>hrs</span></div>
+        <div class="numbers-card-delta neutral">Hábiles · vía WhatsApp</div>
+        <div class="numbers-card-foot">Compromiso operativo del equipo Flotillas, no promesa de marketing.</div>
       </div>
       <div class="numbers-card">
-        <div class="numbers-card-eyebrow">Cobertura activa</div>
-        <div class="numbers-card-value">11 <span>marcas</span></div>
-        <div class="numbers-card-delta neutral">~71 puntos comerciales</div>
-        <div class="numbers-card-foot">12 plazas: GDL, CDMX, Bajío, Pacífico y Centro.</div>
+        <div class="numbers-card-eyebrow">Cobertura comercial</div>
+        <div class="numbers-card-value">10 <span>marcas</span></div>
+        <div class="numbers-card-delta neutral">12 plazas · cobertura nacional</div>
+        <div class="numbers-card-foot">Trámite de placas y verificación en tu plaza, sin costo adicional.</div>
       </div>
     </div>
-
-    <p class="numbers-foot">
-      Las cifras y la metodología están publicadas en el <a href="https://decks-plasencia.grupo-plasencia-automotriz.workers.dev/01-strategy/Reporte-Flotillas-Ventas-2026-06-17" target="_blank" rel="noopener">Reporte ejecutivo División Flotillas · Ventas 2025 vs 2026 YTD</a> y en el Research Readout estratégico que documenta cómo diseñamos esta atención corporativa.
-    </p>
   </div>
 </section>
 
@@ -727,7 +617,7 @@ input, select, textarea { font-size: max(16px, 1rem); }
 </footer>
 
 <div class="sticky-cta-mobile">
-  <a href="#personas" class="btn btn-secondary">Ver personas</a>
+  <a href="#marcas" class="btn btn-secondary">Ver marcas</a>
   <button type="button" class="btn btn-primary" onclick="openLeadForm('sticky_mobile')">Cotizar mi flota</button>
 </div>
 
