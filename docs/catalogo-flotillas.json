@@ -1,0 +1,324 @@
+[
+  {
+    "id": "FORD-RANGER-XLS",
+    "marca": "Ford",
+    "modelo": "Ranger XLS",
+    "year": 2026,
+    "tipo": "pickup",
+    "uso_principal": ["carga", "ventas", "trabajo"],
+    "img": "https://www.ford.com.mx/content/dam/Ford/website-assets/mx/vehicles/2024/ranger/lifestyle/ranger-xlt-lariat.jpg",
+    "alt": "Ford Ranger XLS — pickup para flota empresarial",
+    "specs": {
+      "transmision": "MT 6 / AT 6",
+      "motor": "2.0L Turbo Diesel",
+      "payload_kg": 1000,
+      "torque_nm": 405,
+      "consumo_combinado_kml": 10.5,
+      "capacidad_tanque_l": 80
+    },
+    "lineup_weight": "alto",
+    "ranking_flotillas_gp": 1,
+    "ventas_2026_ytd_unidades": 200,
+    "destacado": "Líder absoluto en flotillas GP",
+    "habilitado": true
+  },
+  {
+    "id": "FORD-F150-XL",
+    "marca": "Ford",
+    "modelo": "F-150 XL",
+    "year": 2026,
+    "tipo": "pickup",
+    "uso_principal": ["carga", "trabajo"],
+    "img": "https://www.ford.com.mx/content/dam/Ford/website-assets/mx/vehicles/2024/f-150/exterior/f150-xl-frontal.jpg",
+    "alt": "Ford F-150 XL — pickup full-size para flota",
+    "specs": {
+      "transmision": "AT 10",
+      "motor": "3.3L V6 / 2.7L EcoBoost",
+      "payload_kg": 1300,
+      "torque_nm": 542,
+      "consumo_combinado_kml": 9.0,
+      "capacidad_tanque_l": 98
+    },
+    "lineup_weight": "alto",
+    "destacado": "Pickup full-size · Stellantis LCV equivalente",
+    "habilitado": true
+  },
+  {
+    "id": "FORD-TRANSIT",
+    "marca": "Ford",
+    "modelo": "Transit Custom",
+    "year": 2026,
+    "tipo": "van",
+    "uso_principal": ["reparto", "carga", "transporte_personal"],
+    "img": "https://www.ford.com.mx/content/dam/Ford/website-assets/mx/vehicles/2024/transit/exterior/transit-cargo-frontal.jpg",
+    "alt": "Ford Transit Custom — van comercial para reparto y logística",
+    "specs": {
+      "transmision": "MT 6 / AT 8",
+      "motor": "2.0L EcoBlue Diesel",
+      "payload_kg": 1100,
+      "capacidad_carga_m3": 11.7,
+      "consumo_combinado_kml": 11.0
+    },
+    "lineup_weight": "alto",
+    "destacado": "Van comercial número 1 en Europa",
+    "habilitado": true
+  },
+  {
+    "id": "MAZDA-BT50",
+    "marca": "Mazda",
+    "modelo": "BT-50",
+    "year": 2026,
+    "tipo": "pickup",
+    "uso_principal": ["carga", "trabajo"],
+    "img": "https://www.mazda.mx/img/cars/bt-50/bt-50-galeria-1.jpg",
+    "alt": "Mazda BT-50 — pickup mediana cabina doble",
+    "specs": {
+      "transmision": "MT 6 / AT 6",
+      "motor": "1.9L Turbo Diesel",
+      "payload_kg": 1050,
+      "torque_nm": 450,
+      "consumo_combinado_kml": 11.2,
+      "capacidad_tanque_l": 76
+    },
+    "lineup_weight": "alto",
+    "destacado": "+71% YoY · #2 utilidad flotillas GP",
+    "habilitado": true
+  },
+  {
+    "id": "MAZDA-CX30",
+    "marca": "Mazda",
+    "modelo": "CX-30",
+    "year": 2026,
+    "tipo": "suv",
+    "uso_principal": ["ejecutivo", "ventas", "transporte_personal"],
+    "img": "https://www.mazda.mx/img/cars/cx-30/cx-30-galeria-1.jpg",
+    "alt": "Mazda CX-30 — SUV ejecutiva para fuerza de ventas",
+    "specs": {
+      "transmision": "AT 6",
+      "motor": "2.5L SkyActiv-G",
+      "consumo_combinado_kml": 13.5,
+      "capacidad_tanque_l": 51
+    },
+    "lineup_weight": "alto",
+    "destacado": "SUV ejecutiva flota de ventas",
+    "habilitado": true
+  },
+  {
+    "id": "MAZDA-CX5",
+    "marca": "Mazda",
+    "modelo": "CX-5",
+    "year": 2026,
+    "tipo": "suv",
+    "uso_principal": ["ejecutivo", "transporte_personal"],
+    "img": "https://www.mazda.mx/img/cars/cx-5/cx-5-galeria-1.jpg",
+    "alt": "Mazda CX-5 — SUV mediana para directivos",
+    "specs": {
+      "transmision": "AT 6",
+      "motor": "2.5L SkyActiv-G",
+      "consumo_combinado_kml": 12.0,
+      "capacidad_tanque_l": 58
+    },
+    "lineup_weight": "alto",
+    "destacado": "SUV ejecutiva para C-suite",
+    "habilitado": true
+  },
+  {
+    "id": "STL-RAM-1500",
+    "marca": "Stellantis",
+    "submarca": "RAM",
+    "modelo": "RAM 1500 Tradesman",
+    "year": 2026,
+    "tipo": "pickup",
+    "uso_principal": ["carga", "trabajo"],
+    "img": "https://www.ram.mx/content/dam/cross-regional/north-america/ram/mexico/2026/1500/galeria/ram-1500-frontal.jpg",
+    "alt": "RAM 1500 Tradesman — pickup full-size",
+    "specs": {
+      "transmision": "AT 8",
+      "motor": "3.6L Pentastar V6",
+      "payload_kg": 1180,
+      "torque_nm": 365,
+      "consumo_combinado_kml": 9.5,
+      "capacidad_tanque_l": 121
+    },
+    "lineup_weight": "medio-alto",
+    "destacado": "Stellantis LCV — líder sucursal flotillas",
+    "habilitado": true
+  },
+  {
+    "id": "STL-PROMASTER",
+    "marca": "Stellantis",
+    "submarca": "RAM",
+    "modelo": "RAM ProMaster",
+    "year": 2026,
+    "tipo": "van",
+    "uso_principal": ["reparto", "carga"],
+    "img": "https://www.ram.mx/content/dam/cross-regional/north-america/ram/mexico/2026/promaster/galeria/promaster-1.jpg",
+    "alt": "RAM ProMaster — van comercial",
+    "specs": {
+      "transmision": "AT 9",
+      "motor": "3.6L Pentastar V6",
+      "payload_kg": 1900,
+      "capacidad_carga_m3": 13.0,
+      "consumo_combinado_kml": 8.5
+    },
+    "lineup_weight": "medio-alto",
+    "destacado": "Van de gran capacidad de carga",
+    "habilitado": true
+  },
+  {
+    "id": "STL-PEUGEOT-PARTNER",
+    "marca": "Stellantis",
+    "submarca": "Peugeot",
+    "modelo": "Peugeot Partner",
+    "year": 2026,
+    "tipo": "van",
+    "uso_principal": ["reparto", "carga"],
+    "img": "https://www.peugeot.com.mx/content/dam/peugeot/mexico/vehiculos/partner/partner-galeria-1.jpg",
+    "alt": "Peugeot Partner — van compacta de reparto urbano",
+    "specs": {
+      "transmision": "MT 5",
+      "motor": "1.6L HDi Diesel",
+      "payload_kg": 850,
+      "capacidad_carga_m3": 4.4,
+      "consumo_combinado_kml": 15.0
+    },
+    "lineup_weight": "medio-alto",
+    "destacado": "Reparto urbano última milla",
+    "habilitado": true
+  },
+  {
+    "id": "HYU-TUCSON",
+    "marca": "Hyundai",
+    "modelo": "Tucson",
+    "year": 2026,
+    "tipo": "suv",
+    "uso_principal": ["ejecutivo", "ventas"],
+    "img": "https://www.hyundaidistribuidor.com.mx/img/modelos/tucson/tucson-galeria-1.jpg",
+    "alt": "Hyundai Tucson — SUV ejecutiva con garantía 7 años",
+    "specs": {
+      "transmision": "AT 6",
+      "motor": "2.0L MPI",
+      "consumo_combinado_kml": 12.5,
+      "capacidad_tanque_l": 62
+    },
+    "lineup_weight": "medio",
+    "destacado": "Garantía 7 años incluida",
+    "habilitado": true
+  },
+  {
+    "id": "HYU-CRETA",
+    "marca": "Hyundai",
+    "modelo": "Creta",
+    "year": 2026,
+    "tipo": "suv",
+    "uso_principal": ["ventas", "transporte_personal"],
+    "img": "https://www.hyundaidistribuidor.com.mx/img/modelos/creta/creta-galeria-1.jpg",
+    "alt": "Hyundai Creta — SUV compacta",
+    "specs": {
+      "transmision": "AT 6",
+      "motor": "1.5L MPI",
+      "consumo_combinado_kml": 14.0,
+      "capacidad_tanque_l": 50
+    },
+    "lineup_weight": "medio",
+    "destacado": "SUV compacta urbana",
+    "habilitado": true
+  },
+  {
+    "id": "HYU-HB20",
+    "marca": "Hyundai",
+    "modelo": "HB20",
+    "year": 2026,
+    "tipo": "sedan",
+    "uso_principal": ["ventas", "transporte_personal"],
+    "img": "https://www.hyundaidistribuidor.com.mx/img/modelos/hb20/hb20-galeria-1.jpg",
+    "alt": "Hyundai HB20 — sedán entry para fuerza de ventas",
+    "specs": {
+      "transmision": "MT 5 / AT 6",
+      "motor": "1.0L Turbo / 1.6L",
+      "consumo_combinado_kml": 16.0,
+      "capacidad_tanque_l": 50
+    },
+    "lineup_weight": "medio",
+    "destacado": "Entry para fuerza de ventas",
+    "habilitado": true
+  },
+  {
+    "id": "GAC-GS3",
+    "marca": "GAC",
+    "modelo": "GS3 Emzoom",
+    "year": 2026,
+    "tipo": "suv",
+    "uso_principal": ["ventas", "transporte_personal"],
+    "img": "https://www.gacmotor.mx/img/gs3-emzoom/gs3-galeria-1.jpg",
+    "alt": "GAC GS3 Emzoom — SUV compacta con alianza Toyota",
+    "specs": {
+      "transmision": "AT 7",
+      "motor": "1.5L Turbo",
+      "consumo_combinado_kml": 14.5,
+      "capacidad_tanque_l": 53
+    },
+    "lineup_weight": "medio",
+    "destacado": "+79% YoY · Alianza fabril Toyota/Honda",
+    "habilitado": true
+  },
+  {
+    "id": "GAC-GS8",
+    "marca": "GAC",
+    "modelo": "GS8",
+    "year": 2026,
+    "tipo": "suv",
+    "uso_principal": ["ejecutivo", "transporte_personal"],
+    "img": "https://www.gacmotor.mx/img/gs8/gs8-galeria-1.jpg",
+    "alt": "GAC GS8 — SUV ejecutiva 7 pasajeros",
+    "specs": {
+      "transmision": "AT 8",
+      "motor": "2.0L Turbo",
+      "consumo_combinado_kml": 11.0,
+      "capacidad_tanque_l": 70
+    },
+    "lineup_weight": "medio",
+    "destacado": "SUV 7 pasajeros para directivos",
+    "habilitado": true
+  },
+  {
+    "id": "CHANGAN-CS35",
+    "marca": "Changan",
+    "modelo": "CS35 Plus",
+    "year": 2026,
+    "tipo": "suv",
+    "uso_principal": ["ventas", "transporte_personal"],
+    "img": "https://www.changan.com.mx/img/cs35-plus/cs35-galeria-1.jpg",
+    "alt": "Changan CS35 Plus — SUV compacta",
+    "specs": {
+      "transmision": "AT 6",
+      "motor": "1.4L Turbo",
+      "consumo_combinado_kml": 13.0,
+      "capacidad_tanque_l": 50
+    },
+    "lineup_weight": "emergente",
+    "destacado": "+178% YoY · Marca emergente",
+    "habilitado": true
+  },
+  {
+    "id": "GWM-POER",
+    "marca": "GWM",
+    "modelo": "Poer Cannon",
+    "year": 2026,
+    "tipo": "pickup",
+    "uso_principal": ["carga", "trabajo"],
+    "img": "https://www.gwm.com.mx/img/poer-cannon/poer-galeria-1.jpg",
+    "alt": "GWM Poer Cannon — pickup mediana con turbo diesel",
+    "specs": {
+      "transmision": "AT 8",
+      "motor": "2.0L Turbo Diesel",
+      "payload_kg": 1000,
+      "torque_nm": 480,
+      "consumo_combinado_kml": 10.0,
+      "capacidad_tanque_l": 78
+    },
+    "lineup_weight": "emergente",
+    "destacado": "+260% YoY · Marca emergente",
+    "habilitado": true
+  }
+]
