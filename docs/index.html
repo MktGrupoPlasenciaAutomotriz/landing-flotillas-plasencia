@@ -182,10 +182,11 @@ input, select, textarea { font-size: max(16px, 1rem); }
 @media (min-width: 640px) { .brands-grid-logos { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 960px) { .brands-grid-logos { grid-template-columns: repeat(4, 1fr); } }
 @media (min-width: 1200px) { .brands-grid-logos { grid-template-columns: repeat(6, 1fr); } }
-.brand-logo-tile { background: rgba(255,255,255,.96); border: 1px solid rgba(255,255,255,.18); border-radius: var(--radius-md); padding: var(--space-5) var(--space-4); display: flex; align-items: center; justify-content: center; min-height: 96px; transition: all var(--duration-normal) var(--ease); }
-.brand-logo-tile:hover { background: white; transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,.15); }
-.brand-logo-tile img { max-width: 100%; max-height: 52px; width: auto; height: auto; object-fit: contain; filter: grayscale(0); }
-@media (max-width: 480px) { .brand-logo-tile { min-height: 80px; padding: var(--space-4) var(--space-3); } .brand-logo-tile img { max-height: 40px; } }
+/* Fondo gris pálido (no blanco puro) para que logos con fill="white" en interiores (Ford oval, Mazda) sean visibles sin perder contraste con logos en negro/azul */
+.brand-logo-tile { background: var(--neutral-100); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-md); padding: var(--space-5) var(--space-4); display: flex; align-items: center; justify-content: center; min-height: 104px; transition: all var(--duration-normal) var(--ease); }
+.brand-logo-tile:hover { background: var(--neutral-50); transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.brand-logo-tile img { max-width: 88%; max-height: 56px; width: auto; height: auto; object-fit: contain; }
+@media (max-width: 480px) { .brand-logo-tile { min-height: 80px; padding: var(--space-3); } .brand-logo-tile img { max-height: 40px; } }
 .brands-foot { margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; color: var(--neutral-400); line-height: 1.55; text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
 .brands-foot strong { color: var(--neutral-50); font-weight: 600; }
 
