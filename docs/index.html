@@ -97,8 +97,8 @@ input, select, textarea { font-size: max(16px, 1rem); }
 .header-cta-icon { width: 16px; height: 16px; }
 @media (max-width: 480px) { .header-cta { padding: 9px 12px; font-size: 13px; } }
 
-.hero { position: relative; background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%); color: var(--neutral-50); padding: var(--space-16) var(--space-4) var(--space-20); overflow: hidden; }
-.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at top right, rgba(66,153,225,.18), transparent 50%), radial-gradient(ellipse at bottom left, rgba(200,16,46,.12), transparent 50%); pointer-events: none; }
+.hero { position: relative; background: var(--color-primary-dark) url('hero-flotillas.svg') center/cover no-repeat; color: var(--neutral-50); padding: var(--space-16) var(--space-4) var(--space-20); overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(15,26,46,.92) 0%, rgba(15,26,46,.78) 38%, rgba(15,26,46,.52) 62%, rgba(15,26,46,.28) 100%); pointer-events: none; }
 .hero-inner { position: relative; max-width: var(--container-max); margin: 0 auto; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: var(--space-2); padding: 6px 14px; background: rgba(236,201,75,.14); border: 1px solid rgba(236,201,75,.4); border-radius: var(--radius-full); font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 2.5px; color: var(--color-gold); text-transform: uppercase; margin-bottom: var(--space-6); }
 .hero-eyebrow-dot { width: 8px; height: 8px; background: var(--color-gold); border-radius: 50%; animation: pulse 2.4s ease-in-out infinite; }
