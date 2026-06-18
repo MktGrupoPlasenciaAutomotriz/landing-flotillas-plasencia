@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="gv-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0F1E"/>
+      <stop offset="60%" stop-color="#0F1A2E"/>
+      <stop offset="100%" stop-color="#1A2540"/>
+    </linearGradient>
+    <linearGradient id="gv-floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A1F2D"/>
+      <stop offset="100%" stop-color="#070C18"/>
+    </linearGradient>
+    <linearGradient id="gv-gold-line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ECC94B" stop-opacity=".15"/>
+      <stop offset="50%" stop-color="#F0D053" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#ECC94B" stop-opacity=".15"/>
+    </linearGradient>
+    <linearGradient id="gv-veh-formal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3D4A60"/>
+      <stop offset="100%" stop-color="#1E2740"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="320" fill="url(#gv-sky)"/>
+  <rect y="320" width="800" height="180" fill="url(#gv-floor)"/>
+
+  <!-- Líneas grid (sugerencia arquitectura/orden corporativo) -->
+  <g opacity=".08" stroke="#ECC94B" stroke-width="1" fill="none">
+    <line x1="0" y1="320" x2="800" y2="320"/>
+    <line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="0" y1="440" x2="800" y2="440"/>
+    <line x1="120" y1="320" x2="120" y2="500"/>
+    <line x1="280" y1="320" x2="280" y2="500"/>
+    <line x1="440" y1="320" x2="440" y2="500"/>
+    <line x1="600" y1="320" x2="600" y2="500"/>
+  </g>
+
+  <!-- Edificio corporativo silueta atrás -->
+  <g opacity=".5">
+    <rect x="50" y="200" width="180" height="120" fill="#0F1A2E"/>
+    <rect x="60" y="215" width="20" height="22" fill="#1A2540"/>
+    <rect x="90" y="215" width="20" height="22" fill="#1A2540"/>
+    <rect x="120" y="215" width="20" height="22" fill="#1A2540"/>
+    <rect x="150" y="215" width="20" height="22" fill="#1A2540"/>
+    <rect x="180" y="215" width="20" height="22" fill="#1A2540"/>
+    <rect x="60" y="245" width="20" height="22" fill="#1A2540" opacity=".7"/>
+    <rect x="90" y="245" width="20" height="22" fill="#1A2540" opacity=".7"/>
+    <rect x="120" y="245" width="20" height="22" fill="#1A2540" opacity=".7"/>
+    <rect x="150" y="245" width="20" height="22" fill="#1A2540" opacity=".7"/>
+    <rect x="180" y="245" width="20" height="22" fill="#1A2540" opacity=".7"/>
+    <rect x="60" y="275" width="20" height="22" fill="#1A2540" opacity=".5"/>
+    <rect x="90" y="275" width="20" height="22" fill="#1A2540" opacity=".5"/>
+    <rect x="120" y="275" width="20" height="22" fill="#1A2540" opacity=".5"/>
+  </g>
+  <g opacity=".4">
+    <rect x="580" y="170" width="160" height="150" fill="#0F1A2E"/>
+    <g fill="#1A2540" opacity=".8">
+      <rect x="590" y="185" width="18" height="20"/>
+      <rect x="615" y="185" width="18" height="20"/>
+      <rect x="640" y="185" width="18" height="20"/>
+      <rect x="665" y="185" width="18" height="20"/>
+      <rect x="690" y="185" width="18" height="20"/>
+      <rect x="715" y="185" width="18" height="20"/>
+      <rect x="590" y="215" width="18" height="20"/>
+      <rect x="615" y="215" width="18" height="20"/>
+      <rect x="640" y="215" width="18" height="20"/>
+      <rect x="665" y="215" width="18" height="20"/>
+      <rect x="690" y="215" width="18" height="20"/>
+      <rect x="715" y="215" width="18" height="20"/>
+      <rect x="590" y="245" width="18" height="20"/>
+      <rect x="615" y="245" width="18" height="20"/>
+      <rect x="640" y="245" width="18" height="20"/>
+      <rect x="665" y="245" width="18" height="20"/>
+      <rect x="690" y="245" width="18" height="20"/>
+    </g>
+  </g>
+
+  <!-- Banda gold horizonte (sutil, formal) -->
+  <rect x="0" y="318" width="800" height="2" fill="url(#gv-gold-line)"/>
+
+  <!-- Flota alineada en patio (formación corporativa, simétrica) -->
+  <!-- SUV 1 -->
+  <g transform="translate(120 350)" opacity=".82">
+    <ellipse cx="100" cy="92" rx="120" ry="5" fill="#000" opacity=".4"/>
+    <path d="M0 45 L14 25 L48 18 L60 8 L140 8 L160 22 L190 28 L200 45 L200 65 L0 65 Z" fill="url(#gv-veh-formal)"/>
+    <path d="M52 22 L65 12 L138 12 L155 22 Z" fill="#1A2540" opacity=".85"/>
+    <circle cx="42" cy="65" r="11" fill="#0A0E18"/>
+    <circle cx="170" cy="65" r="11" fill="#0A0E18"/>
+  </g>
+  <!-- SUV 2 (idéntica al frente, paralelo) -->
+  <g transform="translate(340 350)" opacity=".88">
+    <ellipse cx="100" cy="92" rx="120" ry="5" fill="#000" opacity=".4"/>
+    <path d="M0 45 L14 25 L48 18 L60 8 L140 8 L160 22 L190 28 L200 45 L200 65 L0 65 Z" fill="url(#gv-veh-formal)"/>
+    <path d="M52 22 L65 12 L138 12 L155 22 Z" fill="#1A2540" opacity=".85"/>
+    <!-- Sutil highlight gold -->
+    <path d="M0 45 L14 25 L48 18 L60 8 L140 8 L160 22 L190 28 L200 45 L200 55 L0 55 Z" fill="url(#gv-gold-line)" opacity=".7"/>
+    <circle cx="42" cy="65" r="11" fill="#0A0E18"/>
+    <circle cx="170" cy="65" r="11" fill="#0A0E18"/>
+  </g>
+  <!-- SUV 3 -->
+  <g transform="translate(560 350)" opacity=".85">
+    <ellipse cx="100" cy="92" rx="120" ry="5" fill="#000" opacity=".4"/>
+    <path d="M0 45 L14 25 L48 18 L60 8 L140 8 L160 22 L190 28 L200 45 L200 65 L0 65 Z" fill="url(#gv-veh-formal)"/>
+    <path d="M52 22 L65 12 L138 12 L155 22 Z" fill="#1A2540" opacity=".85"/>
+    <circle cx="42" cy="65" r="11" fill="#0A0E18"/>
+    <circle cx="170" cy="65" r="11" fill="#0A0E18"/>
+  </g>
+
+  <!-- Líneas piso marcadas (orden, compliance) -->
+  <g opacity=".22" stroke="#ECC94B" stroke-width="1" fill="none" stroke-dasharray="8 6">
+    <line x1="100" y1="430" x2="320" y2="430"/>
+    <line x1="320" y1="430" x2="540" y2="430"/>
+    <line x1="540" y1="430" x2="760" y2="430"/>
+  </g>
+</svg>

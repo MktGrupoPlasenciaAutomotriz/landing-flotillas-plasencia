@@ -162,6 +162,27 @@ input, select, textarea { font-size: max(16px, 1rem); }
 .uso-text { font-size: 14px; color: var(--neutral-600); line-height: 1.55; margin-top: auto; }
 .uso-text strong { color: var(--color-primary); font-weight: 600; }
 
+/* Escenarios — "Tu situación" — 3 escenarios B2B con SVG editorial premium */
+.escenarios-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); margin-top: var(--space-8); }
+@media (min-width: 768px) { .escenarios-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-5); } }
+.escenario { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: all var(--duration-normal) var(--ease); position: relative; }
+.escenario:hover { border-color: var(--color-gold); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.escenario-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--color-primary-dark); }
+.escenario-media svg, .escenario-media img { width: 100%; height: 100%; display: block; }
+.escenario-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(15,26,46,.85) 100%); pointer-events: none; }
+.escenario-eyebrow { position: absolute; top: var(--space-4); left: var(--space-4); z-index: 2; font-family: var(--font-display); font-weight: 700; font-size: 10.5px; letter-spacing: 2.5px; color: var(--color-gold); text-transform: uppercase; background: rgba(15,26,46,.7); border: 1px solid rgba(236,201,75,.45); border-radius: var(--radius-full); padding: 5px 12px; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.escenario-body { padding: var(--space-6) var(--space-5) var(--space-5); display: flex; flex-direction: column; flex: 1; }
+.escenario-quote { font-family: var(--font-display); font-weight: 700; font-size: 17px; line-height: 1.35; color: var(--color-primary); letter-spacing: -.3px; margin-bottom: var(--space-3); padding-left: var(--space-3); border-left: 3px solid var(--color-gold); }
+.escenario-quote::before { content: "“"; color: var(--color-gold); margin-right: 2px; font-size: 22px; line-height: 0; vertical-align: -2px; }
+.escenario-quote::after { content: "”"; color: var(--color-gold); margin-left: 1px; font-size: 22px; line-height: 0; vertical-align: -2px; }
+.escenario-segmento { font-size: 12.5px; color: var(--neutral-500); margin-bottom: var(--space-4); line-height: 1.5; font-style: italic; padding-left: var(--space-3); }
+.escenario-respuesta-label { font-family: var(--font-display); font-weight: 700; font-size: 10.5px; letter-spacing: 1.8px; color: var(--color-conversion); text-transform: uppercase; margin-bottom: var(--space-2); }
+.escenario-respuesta { font-size: 14.5px; line-height: 1.55; color: var(--neutral-700); margin-bottom: var(--space-4); flex: 1; }
+.escenario-respuesta strong { color: var(--color-primary); font-weight: 600; }
+.escenario-cta { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--color-conversion); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; border-top: 1px solid var(--neutral-200); margin-top: auto; transition: gap var(--duration-fast) var(--ease); }
+.escenario-cta:hover { gap: 14px; }
+.escenario-cta svg { transition: transform var(--duration-fast) var(--ease); }
+
 /* Marcas grid */
 .brands-strip { background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary)); color: var(--neutral-50); padding: var(--space-16) var(--space-4); }
 .brands-strip h2 { color: var(--neutral-50); }
@@ -435,43 +456,60 @@ input, select, textarea { font-size: max(16px, 1rem); }
 
 
 
-<!-- COBERTURA POR USO — no modelos individuales, categorías -->
-<section class="section section-alt" aria-labelledby="uso-title">
+<!-- TU SITUACIÓN — 3 escenarios B2B reconocibles con SVG editorial premium -->
+<section class="section section-alt" aria-labelledby="escenarios-title">
   <div class="section-inner">
-    <span class="section-eyebrow">Cobertura por uso</span>
-    <h2 id="uso-title">¿Para qué va a trabajar tu flota?</h2>
+    <span class="section-eyebrow">Tu situación</span>
+    <h2 id="escenarios-title">Reconoce la tuya. Así te respondemos.</h2>
     <p class="section-intro">
-      El uso real define la cobertura: payload y torque para carga, capacidad y consumo para reparto, confort y consumo para ventas, presencia para ejecutivo. En la conversación armonizamos marcas según uso, presupuesto y disponibilidad inmediata.
+      Las flotas no se compran iguales. La que renueva mixta y la que necesita unidades operando en 30 días no tienen el mismo problema — y no las atendemos con la misma propuesta. Estos son los tres escenarios que vemos llegar con frecuencia.
     </p>
-    <div class="uso-grid">
+    <div class="escenarios-grid">
 
-      <div class="uso-card">
-        <div class="uso-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12h22M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4M5 12v6a1 1 0 001 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
-        <h3>Carga y trabajo</h3>
-        <div class="uso-tagline">Construcción, obra, agroindustria, servicios pesados</div>
-        <div class="uso-text">Pickups medianas y full-size con payload corporativo, transmisión manual o automática, motor de torque alto y red de servicio en plazas industriales y de obra.</div>
-      </div>
+      <!-- Escenario A — Operación (Director de Operaciones renovando flota mixta) -->
+      <article class="escenario" aria-labelledby="esc-op-title">
+        <div class="escenario-media">
+          <span class="escenario-eyebrow">Operación</span>
+          <img src="imagenes/escenario-operacion.svg" alt="Flota mixta de pickup, van y SUV en patio corporativo al atardecer" loading="lazy">
+        </div>
+        <div class="escenario-body">
+          <p class="escenario-quote" id="esc-op-title">Tengo pickups, vans y SUVs que rotar este año, y nadie me cotiza el paquete completo.</p>
+          <p class="escenario-segmento">Director de Operaciones · 10 a 50 unidades · marcas mezcladas por uso real</p>
+          <div class="escenario-respuesta-label">Cómo te respondemos</div>
+          <p class="escenario-respuesta"><strong>Un ejecutivo, una propuesta, una factura mensual.</strong> Armonizamos plazos cruzados entre marcas, una sola entrega coordinada y CFDI consolidado o por unidad — como tu contabilidad lo pida.</p>
+          <button type="button" class="escenario-cta" onclick="openLeadForm('escenario_operacion')" data-escenario="operacion">Esto es lo mío <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </article>
 
-      <div class="uso-card">
-        <div class="uso-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <h3>Reparto y última milla</h3>
-        <div class="uso-tagline">Distribución, e-commerce, logística urbana, alimentos</div>
-        <div class="uso-text">Vans compactas, medianas y de gran capacidad con bajo consumo, fácil maniobra urbana y rotación rápida. Talleres en plazas operativas para minimizar tiempo fuera de ruta.</div>
-      </div>
+      <!-- Escenario B — Crecimiento (Fundador/Director Comercial con urgencia) -->
+      <article class="escenario" aria-labelledby="esc-cr-title">
+        <div class="escenario-media">
+          <span class="escenario-eyebrow">Crecimiento</span>
+          <img src="imagenes/escenario-crecimiento.svg" alt="Flota saliendo en formación con sol naciente, sugerencia de movimiento" loading="lazy">
+        </div>
+        <div class="escenario-body">
+          <p class="escenario-quote" id="esc-cr-title">Cerré el contrato y necesito 8 unidades operando antes de 30 días.</p>
+          <p class="escenario-segmento">Fundador o Director Comercial · 3 a 15 unidades · primera flota o expansión urgente</p>
+          <div class="escenario-respuesta-label">Cómo te respondemos</div>
+          <p class="escenario-respuesta"><strong>Inventario inmediato en piso y crédito empresarial directo del distribuidor.</strong> Entregas escalonadas a tus tiempos de despliegue. Si lo que pides está disponible esta semana, no hay razón para que esperes 90 días.</p>
+          <button type="button" class="escenario-cta" onclick="openLeadForm('escenario_crecimiento')" data-escenario="crecimiento">Esto es lo mío <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </article>
 
-      <div class="uso-card">
-        <div class="uso-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-3-3.87M4 21v-2a4 4 0 013-3.87"/><circle cx="9" cy="7" r="4"/></svg></div>
-        <h3>Fuerza de ventas</h3>
-        <div class="uso-tagline">Farma, consumo, seguros, distribución regional</div>
-        <div class="uso-text">Sedanes y SUVs compactas con consumo eficiente, presencia adecuada para visitar cliente, durabilidad en carretera y mantenimiento programado en plazas multi-estado.</div>
-      </div>
-
-      <div class="uso-card">
-        <div class="uso-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h2l4-4 3 3 6-6 3 3v7H3z"/><circle cx="8" cy="9" r="2"/></svg></div>
-        <h3>Ejecutivo y directivos</h3>
-        <div class="uso-tagline">C-suite, gerencia media, transporte VIP, consultoría</div>
-        <div class="uso-text">SUVs medianas y full-size con confort interior, paquete tecnológico y de seguridad, presencia corporativa y atención preferente en taller para no comprometer agenda directiva.</div>
-      </div>
+      <!-- Escenario C — Gobierno (Director de Compras/CFO corporativo con compliance) -->
+      <article class="escenario" aria-labelledby="esc-gv-title">
+        <div class="escenario-media">
+          <span class="escenario-eyebrow">Gobierno</span>
+          <img src="imagenes/escenario-gobierno.svg" alt="Flota corporativa alineada en patio frente a edificios de oficinas, orden y cumplimiento" loading="lazy">
+        </div>
+        <div class="escenario-body">
+          <p class="escenario-quote" id="esc-gv-title">Mi comité pide CFDI por servicio, garantías formales y un solo punto de contacto para auditoría.</p>
+          <p class="escenario-segmento">Director de Compras o CFO · 15+ unidades · proceso con comité interno y compliance</p>
+          <div class="escenario-respuesta-label">Cómo te respondemos</div>
+          <p class="escenario-respuesta"><strong>Contrato corporativo formal por escrito.</strong> Facturación consolidada o desglosada por unidad, garantías documentadas, ejecutivo dedicado para tu área de compliance y carpeta de respaldo lista para auditoría interna.</p>
+          <button type="button" class="escenario-cta" onclick="openLeadForm('escenario_gobierno')" data-escenario="gobierno">Esto es lo mío <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </article>
 
     </div>
   </div>
