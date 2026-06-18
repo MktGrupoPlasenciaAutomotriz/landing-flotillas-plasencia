@@ -260,6 +260,14 @@ input, select, textarea { font-size: max(16px, 1rem); }
 .modal-header h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(20px, 4vw, 26px); letter-spacing: -.5px; line-height: 1.15; color: var(--neutral-50); margin-bottom: var(--space-2); }
 .modal-header p { color: var(--neutral-300); font-size: 14px; line-height: 1.5; }
 .modal-body { padding: var(--space-6); }
+.form-step-indicator { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); padding-bottom: var(--space-3); border-bottom: 1px solid var(--neutral-100); flex-wrap: wrap; }
+.form-step-num { font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 1.5px; color: var(--color-conversion); text-transform: uppercase; }
+.form-step-label { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--color-primary); letter-spacing: -.2px; flex: 1; }
+.form-step-progress { display: flex; gap: 6px; align-items: center; }
+.form-step-dot { width: 28px; height: 4px; background: var(--neutral-200); border-radius: 2px; transition: background var(--duration-fast) var(--ease); }
+.form-step-dot.is-active { background: var(--color-conversion); }
+.form-step-dot.is-done { background: var(--color-success); }
+
 .form-section + .form-section { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--neutral-100); }
 .form-section-title { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 2px; color: var(--color-conversion); text-transform: uppercase; margin-bottom: var(--space-4); }
 .form-row { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-bottom: var(--space-3); }
@@ -371,7 +379,7 @@ input, select, textarea { font-size: max(16px, 1rem); }
         Cuéntanos de tu flota
         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </button>
-      <a href="#marcas" class="btn btn-secondary">Ver marcas que trabajamos</a>
+      <a href="#proceso" class="btn btn-secondary">Ver cómo trabajamos</a>
     </div>
   </div>
 </section>
@@ -469,33 +477,6 @@ input, select, textarea { font-size: max(16px, 1rem); }
   </div>
 </section>
 
-<!-- MARCAS QUE REPRESENTAMOS · Concesionarios autorizados del Grupo -->
-<section class="brands-strip" id="marcas" aria-labelledby="brands-title">
-  <div class="section-inner">
-    <span class="section-eyebrow">Lineup</span>
-    <h2 id="brands-title">10 marcas, una sola conversación.</h2>
-    <p class="section-intro">Concesionarios autorizados del Grupo Plasencia. Mezcla las que necesites para tu flota — pickups Ford o RAM para campo, vans Peugeot o Promaster para reparto, SUVs Mazda o Hyundai para ventas, GAC o Changan para flotas emergentes. Un solo ejecutivo arma el portafolio.</p>
-
-    <div class="brands-grid-logos">
-      <div class="brand-logo-tile" data-marca="ford"><img src="imagenes/logos/marcas/ford.svg" alt="Ford" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="mazda"><img src="imagenes/logos/marcas/mazda.svg" alt="Mazda" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="ram"><img src="imagenes/logos/marcas/ram.svg" alt="RAM" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="jeep"><img src="imagenes/logos/marcas/jeep.svg" alt="Jeep" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="peugeot"><img src="imagenes/logos/marcas/peugeot.svg" alt="Peugeot" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="dodge"><img src="imagenes/logos/marcas/dodge.svg" alt="Dodge" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="fiat"><img src="imagenes/logos/marcas/fiat.svg" alt="Fiat" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="hyundai"><img src="imagenes/logos/marcas/hyundai.svg" alt="Hyundai" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="gac"><img src="imagenes/logos/marcas/gac.png" alt="GAC" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="changan"><img src="imagenes/logos/marcas/changan.svg" alt="Changan" loading="lazy"></div>
-      <div class="brand-logo-tile" data-marca="gwm"><img src="imagenes/logos/marcas/gwm.svg" alt="GWM" loading="lazy"></div>
-    </div>
-
-    <p class="brands-foot">
-      El precio empresarial depende de volumen, modalidad de financiamiento y disponibilidad del mes. Tu cotización refleja stock real y condiciones del periodo en curso, no parrilla genérica.
-    </p>
-  </div>
-</section>
-
 <!-- LO QUE RECIBES — atributos del servicio que el cliente valora, no nuestras métricas internas -->
 <section class="section section-alt" aria-labelledby="numbers-title">
   <div class="section-inner">
@@ -532,8 +513,37 @@ input, select, textarea { font-size: max(16px, 1rem); }
   </div>
 </section>
 
+<!-- MARCAS QUE REPRESENTAMOS · Concesionarios autorizados del Grupo -->
+<section class="brands-strip" id="marcas" aria-labelledby="brands-title">
+  <div class="section-inner">
+    <span class="section-eyebrow">Lineup</span>
+    <h2 id="brands-title">10 marcas, una sola conversación.</h2>
+    <p class="section-intro">Concesionarios autorizados del Grupo Plasencia. Mezcla las que necesites para tu flota — pickups Ford o RAM para campo, vans Peugeot o Promaster para reparto, SUVs Mazda o Hyundai para ventas, GAC o Changan para flotas emergentes. Un solo ejecutivo arma el portafolio.</p>
+
+    <div class="brands-grid-logos">
+      <div class="brand-logo-tile" data-marca="ford"><img src="imagenes/logos/marcas/ford.svg" alt="Ford" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="mazda"><img src="imagenes/logos/marcas/mazda.svg" alt="Mazda" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="ram"><img src="imagenes/logos/marcas/ram.svg" alt="RAM" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="jeep"><img src="imagenes/logos/marcas/jeep.svg" alt="Jeep" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="peugeot"><img src="imagenes/logos/marcas/peugeot.svg" alt="Peugeot" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="dodge"><img src="imagenes/logos/marcas/dodge.svg" alt="Dodge" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="fiat"><img src="imagenes/logos/marcas/fiat.svg" alt="Fiat" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="hyundai"><img src="imagenes/logos/marcas/hyundai.svg" alt="Hyundai" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="gac"><img src="imagenes/logos/marcas/gac.png" alt="GAC" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="changan"><img src="imagenes/logos/marcas/changan.svg" alt="Changan" loading="lazy"></div>
+      <div class="brand-logo-tile" data-marca="gwm"><img src="imagenes/logos/marcas/gwm.svg" alt="GWM" loading="lazy"></div>
+    </div>
+
+    <p class="brands-foot">
+      El precio empresarial depende de volumen, modalidad de financiamiento y disponibilidad del mes. Tu cotización refleja stock real y condiciones del periodo en curso, no parrilla genérica.
+    </p>
+  </div>
+</section>
+
+
+
 <!-- CÓMO TRABAJAMOS -->
-<section class="section" aria-labelledby="how-title">
+<section class="section" id="proceso" aria-labelledby="how-title">
   <div class="section-inner">
     <span class="section-eyebrow">Proceso</span>
     <h2 id="how-title">Del primer mensaje a la entrega.</h2>
@@ -618,7 +628,7 @@ input, select, textarea { font-size: max(16px, 1rem); }
 </footer>
 
 <div class="sticky-cta-mobile">
-  <a href="#marcas" class="btn btn-secondary">Ver marcas</a>
+  <a href="#proceso" class="btn btn-secondary">Cómo trabajamos</a>
   <button type="button" class="btn btn-primary" onclick="openLeadForm('sticky_mobile')">Cotizar mi flota</button>
 </div>
 
@@ -638,7 +648,7 @@ input, select, textarea { font-size: max(16px, 1rem); }
       <form id="leadForm" onsubmit="submitLead(event)" novalidate>
 
         <div class="form-section">
-          <div class="form-section-title">01 · Tu flota</div>
+          <div class="form-step-indicator" data-step="1"><span class="form-step-num">Paso 1 de 3</span><span class="form-step-label">Tu flota</span><div class="form-step-progress"><span class="form-step-dot is-active"></span><span class="form-step-dot"></span><span class="form-step-dot"></span></div></div>
 
           <div class="form-field">
             <label>¿Cuántas unidades necesitas? <span class="req">*</span></label>
@@ -753,7 +763,7 @@ input, select, textarea { font-size: max(16px, 1rem); }
         </div>
 
         <div class="form-section">
-          <div class="form-section-title">02 · Tu empresa</div>
+          <div class="form-step-indicator" data-step="2"><span class="form-step-num">Paso 2 de 3</span><span class="form-step-label">Tu empresa</span><div class="form-step-progress"><span class="form-step-dot is-done"></span><span class="form-step-dot is-active"></span><span class="form-step-dot"></span></div></div>
           <div class="form-field">
             <label for="empresa_nombre">Razón social o nombre comercial <span class="req">*</span></label>
             <input type="text" id="empresa_nombre" name="empresa_nombre" required minlength="3" autocomplete="organization" placeholder="Ej. Distribuidora del Bajío S.A. de C.V.">
@@ -772,7 +782,7 @@ input, select, textarea { font-size: max(16px, 1rem); }
         </div>
 
         <div class="form-section">
-          <div class="form-section-title">03 · Cómo te contactamos</div>
+          <div class="form-step-indicator" data-step="3"><span class="form-step-num">Paso 3 de 3</span><span class="form-step-label">Cómo te contactamos</span><div class="form-step-progress"><span class="form-step-dot is-done"></span><span class="form-step-dot is-done"></span><span class="form-step-dot is-active"></span></div></div>
           <div class="form-row two-col">
             <div class="form-field">
               <label for="nombre">Nombre <span class="req">*</span></label>
