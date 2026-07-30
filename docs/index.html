@@ -980,6 +980,70 @@ function pushEvent(eventName, payload) {
   window.dataLayer.push(data);
 }
 
+// ── Persist tracking context al load (paridad SEM) ──
+// Al cargar, capturamos click IDs (fbclid/gclid/gbraid/wbraid), UTMs, meta_ad_id,
+// meta_placement de la URL y los guardamos en sessionStorage. Así sobreviven a
+// navegación interna: si el usuario llega desde ad, cierra el modal, vuelve
+// después y llena el form, los tracking IDs siguen ahí para atribución completa.
+(function persistClickIds() {
+  try {
+    var p = new URLSearchParams(window.location.search);
+    ['fbclid','gclid','gbraid','wbraid',
+     'utm_source','utm_medium','utm_campaign','utm_content','utm_term',
+     'ad_id','placement'].forEach(function(k) {
+      var v = p.get(k);
+      if (v) {
+        var storageKey = (k === 'ad_id') ? 'meta_ad_id' : (k === 'placement') ? 'meta_placement' : k;
+        sessionStorage.setItem(storageKey, v);
+      }
+    });
+  } catch (_) {}
+})();
+
+// ── Fetch client IP no-blocking (paridad SEM) ──
+// Para tener client_ip disponible en el evento de conversión. Si falla, el
+// server-side CAPI puede tomar la IP del header Cf-Connecting-IP del worker.
+(function fetchClientIp() {
+  if (sessionStorage.getItem('client_ip')) return;
+  fetch('https://api.ipify.org?format=json')
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(d) { if (d && d.ip) sessionStorage.setItem('client_ip', d.ip); })
+    .catch(function() {});
+})();
+
+function getCookie(name) {
+  var m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\[\]\\\/+^])/g, '\\$1') + '=([^;]*)'));
+  return m ? decodeURIComponent(m[1]) : '';
+}
+
+function getGaClientId() {
+  var ga = getCookie('_ga');
+  return ga ? ga.split('.').slice(-2).join('.') : '';
+}
+
+// Devuelve el context completo de atribución para spread en dataLayer + payload
+// al worker. Consistente con SEM/HYU/STL/GAC.
+function getTrackingContext() {
+  return {
+    fbclid: sessionStorage.getItem('fbclid') || '',
+    fbp: getCookie('_fbp'),
+    fbc: getCookie('_fbc'),
+    meta_ad_id: sessionStorage.getItem('meta_ad_id') || '',
+    meta_placement: sessionStorage.getItem('meta_placement') || '',
+    gclid: sessionStorage.getItem('gclid') || '',
+    gbraid: sessionStorage.getItem('gbraid') || '',
+    wbraid: sessionStorage.getItem('wbraid') || '',
+    utm_source: sessionStorage.getItem('utm_source') || '',
+    utm_medium: sessionStorage.getItem('utm_medium') || '',
+    utm_campaign: sessionStorage.getItem('utm_campaign') || '',
+    utm_content: sessionStorage.getItem('utm_content') || '',
+    utm_term: sessionStorage.getItem('utm_term') || '',
+    ga_client_id: getGaClientId(),
+    client_ip_address: sessionStorage.getItem('client_ip') || '',
+    client_user_agent: navigator.userAgent || ''
+  };
+}
+
 function escapeText(s) { if (s == null) return ''; return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
 function selectICP(btn, range, icpClass) {
@@ -1043,10 +1107,7 @@ function generateFolio() {
   return 'GP-FLOT-' + ymd + '-' + hms;
 }
 
-function getCookie(name) {
-  var match = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]+)'));
-  return match ? decodeURIComponent(match[2]) : null;
-}
+// (getCookie / getGaClientId / getTrackingContext ya definidos arriba, cerca del load)
 
 async function submitLead(e) {
   e.preventDefault();
@@ -1060,7 +1121,6 @@ async function submitLead(e) {
   formData.getAll('marcas_interes').forEach(function(v){ marcasInteres.push(v); });
 
   var folio = generateFolio();
-  var urlParams = new URLSearchParams(window.location.search);
 
   var payload = {
     folio: folio,
@@ -1091,25 +1151,81 @@ async function submitLead(e) {
     acepta_marketing: false,
     fuente: 'spa_flotillas',
     canal: TRIGGER_SOURCE,
-    fbclid: urlParams.get('fbclid') || '',
-    gclid: urlParams.get('gclid') || '',
-    fbp: getCookie('_fbp') || '',
-    fbc: getCookie('_fbc') || '',
-    ga_client_id: (getCookie('_ga') || '').split('.').slice(-2).join('.'),
-    utm_source: urlParams.get('utm_source') || '',
-    utm_medium: urlParams.get('utm_medium') || '',
-    utm_campaign: urlParams.get('utm_campaign') || '',
-    utm_content: urlParams.get('utm_content') || '',
-    utm_term: urlParams.get('utm_term') || '',
-    meta_ad_id: urlParams.get('ad_id') || '',
-    meta_placement: urlParams.get('placement') || '',
+    // Spread completo de tracking context (persistido en sessionStorage al load).
+    // Sobrevive navegación interna: click Meta Ads → cierra modal → vuelve → submit.
+    ...getTrackingContext(),
     page_url: window.location.href,
     page_referrer: document.referrer || ''
   };
 
-  pushEvent('generate_lead_b2b', { event_id: folio + '_Lead', folio: folio, currency: 'MXN', value: 0, b2b: true, num_units_range: payload.num_unidades_rango, industry: payload.industria, modalidad_financiamiento: payload.modalidad_financiamiento, icp_class: payload.icp_class });
-  if (typeof fbq === 'function') { fbq('track', 'Lead', { currency: 'MXN', content_category: 'flotilla_b2b' }, { eventID: folio + '_Lead' }); }
-  if (typeof gtag === 'function') { gtag('event', 'generate_lead', { currency: 'MXN', value: 0, content_type: 'flotilla_b2b', num_units_range: payload.num_unidades_rango, industry: payload.industria }); }
+  // ── Eventos client-side enriquecidos (paridad SEM) ─────────────────────
+  // (1) dataLayer generate_lead_b2b con full tracking context — GTM lo usa
+  //     para poblar GA4 Event params + Pixel Advanced Matching + Google Ads
+  //     Enhanced Conversions.
+  // (2) fbq('track', 'Lead') con eventID dedup con CAPI server-side (mismo
+  //     folio_Lead), custom_data para segmentar audiences, y content_name
+  //     legible (industria + rango) para reporting Meta Events Manager.
+  // (3) gtag directo con Enhanced Conversions (email/phone plain, Google los
+  //     hashea) — cubre caso donde GTM tag no dispare.
+  var industriaLabel = (document.querySelector('select[name="industria"] option:checked') || {}).text || payload.industria;
+  var contentName = 'Flotilla ' + payload.num_unidades_rango + ' uds · ' + industriaLabel;
+
+  pushEvent('generate_lead_b2b', Object.assign({
+    event_id: folio + '_Lead',
+    folio: folio,
+    currency: 'MXN',
+    value: 0,
+    b2b: true,
+    num_units_range: payload.num_unidades_rango,
+    num_units_exact: payload.num_unidades_exacto,
+    industry: payload.industria,
+    industry_label: industriaLabel,
+    uso_principal: payload.uso_principal,
+    modalidad_financiamiento: payload.modalidad_financiamiento,
+    dias_credito_esperado: payload.dias_credito_esperado,
+    ciclo_renovacion_anos: payload.ciclo_renovacion_anos,
+    tiene_flota_actual: payload.tiene_flota_actual,
+    marcas_interes: (payload.marcas_interes || []).join(','),
+    icp_class: payload.icp_class,
+    empresa_domain: (payload.email || '').split('@')[1] || '',
+    cargo: payload.cargo,
+    content_name: contentName
+  }, getTrackingContext()));
+
+  if (typeof fbq === 'function') {
+    fbq('track', 'Lead', {
+      currency: 'MXN',
+      value: 0,
+      content_category: 'flotilla_b2b',
+      content_name: contentName,
+      content_ids: [payload.num_unidades_rango],
+      predicted_ltv: 0,
+      num_items: payload.num_unidades_exacto || 0
+    }, { eventID: folio + '_Lead' });
+  }
+
+  if (typeof gtag === 'function') {
+    gtag('event', 'generate_lead', {
+      currency: 'MXN',
+      value: 0,
+      content_type: 'flotilla_b2b',
+      transaction_id: folio,
+      num_units_range: payload.num_unidades_rango,
+      industry: payload.industria,
+      modalidad: payload.modalidad_financiamiento,
+      icp_class: payload.icp_class,
+      // Enhanced Conversions user_data (plain — Google los hashea automático)
+      user_data: {
+        email: payload.email,
+        phone_number: '+52' + (payload.telefono || '').replace(/\D/g, ''),
+        address: {
+          first_name: payload.nombre,
+          last_name: payload.apellido_paterno,
+          country: 'MX'
+        }
+      }
+    });
+  }
 
   try {
     var resp = await fetch(CRM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), keepalive: true });
