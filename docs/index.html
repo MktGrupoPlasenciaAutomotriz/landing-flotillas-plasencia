@@ -1158,6 +1158,40 @@ async function submitLead(e) {
     page_referrer: document.referrer || ''
   };
 
+  // ── Hash user identifiers con SHA-256 (Web Crypto) para Advanced Matching ──
+  // Meta Pixel Advanced Matching y GA4 Enhanced Conversions requieren
+  // email/telefono/nombre hasheados con SHA-256 hex lowercase. Google Ads
+  // acepta plain (los hashea automáticamente) pero mejor enviarlos pre-hasheados
+  // para que el email plain nunca salga del browser (privacy).
+  // Normalización: email → lowercase + trim; teléfono → solo dígitos con prefix
+  // +52 MX; nombres → lowercase + trim + sin acentos.
+  async function sha256Hex(str) {
+    if (!str) return '';
+    const buf = new TextEncoder().encode(str);
+    const hash = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  function normalizeEmail(s) { return (s || '').trim().toLowerCase(); }
+  function normalizePhone(s) {
+    var digits = (s || '').replace(/\D/g, '');
+    if (digits.length === 10) digits = '52' + digits;
+    return digits;
+  }
+  function normalizeName(s) {
+    return (s || '').trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  var emailNorm    = normalizeEmail(payload.email);
+  var phoneNorm    = normalizePhone(payload.telefono);
+  var nombreNorm   = normalizeName(payload.nombre);
+  var apellidoNorm = normalizeName(payload.apellido_paterno);
+  var [emailHash, phoneHash, nombreHash, apellidoHash] = await Promise.all([
+    sha256Hex(emailNorm),
+    sha256Hex(phoneNorm),
+    sha256Hex(nombreNorm),
+    sha256Hex(apellidoNorm)
+  ]);
+
   // ── Eventos client-side enriquecidos (paridad SEM) ─────────────────────
   // (1) dataLayer generate_lead_b2b con full tracking context — GTM lo usa
   //     para poblar GA4 Event params + Pixel Advanced Matching + Google Ads
@@ -1189,10 +1223,28 @@ async function submitLead(e) {
     icp_class: payload.icp_class,
     empresa_domain: (payload.email || '').split('@')[1] || '',
     cargo: payload.cargo,
-    content_name: contentName
+    content_name: contentName,
+    // Hashes SHA-256 disponibles para GTM tags que quieran hacer Advanced
+    // Matching Pixel / Enhanced Conversions Google Ads sin exponer plain.
+    email_hash: emailHash,
+    telefono_hash: phoneHash,
+    nombre_hash: nombreHash,
+    apellido_paterno_hash: apellidoHash
   }, getTrackingContext()));
 
   if (typeof fbq === 'function') {
+    // Advanced Matching: set userData ANTES del track para que Meta lo asocie
+    // al evento Lead. Todos los campos van SHA-256 hasheados. Country hasheado
+    // 'mx'. Consistente con lo que server-side CAPI envía → mejora Event Match
+    // Quality y dedup por email/teléfono además del eventID folio_Lead.
+    fbq('set', 'userData', {
+      em: emailHash,
+      ph: phoneHash,
+      fn: nombreHash,
+      ln: apellidoHash
+      // country: worker (CAPI server-side) ya envía sha256('mx') como country;
+      // no lo duplico aquí para evitar conflict Match Quality si difiere.
+    });
     fbq('track', 'Lead', {
       currency: 'MXN',
       value: 0,
@@ -1214,13 +1266,16 @@ async function submitLead(e) {
       industry: payload.industria,
       modalidad: payload.modalidad_financiamiento,
       icp_class: payload.icp_class,
-      // Enhanced Conversions user_data (plain — Google los hashea automático)
+      // Enhanced Conversions user_data — pre-hasheado SHA-256 lowercase
+      // (mejor práctica privacy: el email/teléfono plain nunca sale del browser).
+      // Google acepta ambos formatos; enviar hasheado evita que el navegador lo
+      // exponga en Network tab si alguien inspecciona.
       user_data: {
-        email: payload.email,
-        phone_number: '+52' + (payload.telefono || '').replace(/\D/g, ''),
+        sha256_email_address: emailHash,
+        sha256_phone_number: phoneHash,
         address: {
-          first_name: payload.nombre,
-          last_name: payload.apellido_paterno,
+          sha256_first_name: nombreHash,
+          sha256_last_name: apellidoHash,
           country: 'MX'
         }
       }
