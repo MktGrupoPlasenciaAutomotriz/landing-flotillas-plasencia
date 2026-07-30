@@ -3,3 +3,6 @@ node_modules/
 *.log
 .env
 .env.*
+
+# Backups locales de imágenes originales pre-optimización
+.originals-backup*/
