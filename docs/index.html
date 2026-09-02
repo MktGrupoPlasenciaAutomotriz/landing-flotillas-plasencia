@@ -1021,6 +1021,27 @@ function getGaClientId() {
   return ga ? ga.split('.').slice(-2).join('.') : '';
 }
 
+// GA4 session_id. SIN ESTO los eventos server-side via Measurement Protocol NO
+// se unen a la sesion del browser: GA4 abre una sesion nueva sin fuente y la
+// manda a (direct) / "Unassigned", aunque el clic haya venido de Paid Search.
+// Diagnosticado en Seminuevos el 27-ago-2026 y corregido ahi el 28; esta landing
+// se quedo sin el fix hasta el 2-sep-2026.
+//
+// Se busca cualquier cookie `_ga_*` en vez de hardcodear el stream, para que el
+// fix sobreviva a un cambio de propiedad. Formatos soportados:
+//   GS1.1.1712345678.5.1.1712345999.60.0.0          -> session_id = 3er segmento
+//   GS2.1.s1756300000$o5$g1$t1756300123$j60$l0$h0   -> session_id = tras la "s"
+function getGaSessionId() {
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)_ga_[A-Z0-9]+=([^;]+)/);
+    if (!m) return '';
+    var parts = decodeURIComponent(m[1]).split('.');
+    if (parts.length < 3) return '';
+    var seg = parts[2].split('$')[0];
+    return /^s?\d+$/.test(seg) ? seg.replace(/^s/, '') : '';
+  } catch (e) { return ''; }
+}
+
 // Devuelve el context completo de atribución para spread en dataLayer + payload
 // al worker. Consistente con SEM/HYU/STL/GAC.
 function getTrackingContext() {
@@ -1039,6 +1060,7 @@ function getTrackingContext() {
     utm_content: sessionStorage.getItem('utm_content') || '',
     utm_term: sessionStorage.getItem('utm_term') || '',
     ga_client_id: getGaClientId(),
+    ga_session_id: getGaSessionId(),
     client_ip_address: sessionStorage.getItem('client_ip') || '',
     client_user_agent: navigator.userAgent || ''
   };
